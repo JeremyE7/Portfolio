@@ -1,0 +1,36 @@
+---
+interface Props {
+    color: string;
+    href: string;
+}
+
+const { color, href } = Astro.props;
+---
+
+<a
+    href={href}
+    rel="noopenner noreferrer"
+    target="_blank"
+    style=`background-color: ${color} ;`
+>
+    <slot />
+</a>
+
+<style>
+    a {
+        color: var(--eerie-black);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        padding: 5px;
+        border-radius: 20px;
+        font-size: 12px;
+        transition: transform 0.3s;
+    }
+    
+    a:hover {
+        transform: scale(1.1);
+    }
+</style>
