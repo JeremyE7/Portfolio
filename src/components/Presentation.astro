@@ -1,0 +1,138 @@
+---
+import Availability from "./Availability.astro";
+import SocialPill from "./SocialPill.astro";
+import Github from "./icons/Github.astro";
+import Linkedin from "./icons/Linkedin.astro";
+
+const available = import.meta.env.AVAILABLE ?? "true";
+
+---
+
+<section id="presentation">
+    <figure>
+        <img
+            src="JeremyPP.webp"
+            alt="Jeremy Encalada"
+            width="200"
+            height="200"
+        />
+    </figure>
+    <span class="title">
+        <h1>
+            Hola, soy <span class="name">Jeremy Encalada</span> !
+        </h1>
+        <span class="subtitle">
+            <h2>Bienvenido a mi portafolio</h2>
+            {
+                available == "true" ? (
+                    <Availability />
+                ) : null
+            }
+        </span>
+        <span class="socials">
+            <SocialPill color="" href="https://github.com/JeremyE7"> 
+                <Github fill="#222222" width="20"/>
+            </SocialPill>
+            <SocialPill color="" href="https://www.linkedin.com/in/jeremy-encalada-8480952a1/">
+                <Linkedin width="20"/>
+            </SocialPill>
+        </span>
+    </span>
+</section>
+<script>
+    const $name = document.querySelector(".name") as HTMLElement;
+
+    document.addEventListener("mousemove", (e) => {
+        const { clientX, clientY } = e;
+        const x = clientX / window.innerWidth;
+        const y = clientY / window.innerHeight;
+        //Limitar el movimiento del fondo del texto
+        $name.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
+    });
+</script>
+
+<style>
+    h1 {
+        margin: 0;
+        font-size: 55px;
+    }
+    h2 {
+        margin: 0;
+    }
+
+    section {
+        display: flex;
+        gap: 50px;
+        height: 100vh;
+        align-items: center;
+        animation: fadeIn 1s ease-in-out;
+        overflow: hidden;
+    }
+
+    .title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+        animation: increaseWidth 0.7s linear;
+        overflow: hidden;
+        text-wrap: nowrap;
+    }
+
+    .subtitle {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .name {
+        background: linear-gradient(
+            to right,
+            #beda0e,
+            #f95738,
+            #ee964b,
+            #8da9c4
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: background-position 0.1s ease-out;
+        background-size: 300% 100%;
+    }
+
+    .socials{
+        display: flex;
+        gap: 10px;
+    }
+
+    figure {
+        border-radius: 30%;
+        overflow: hidden;
+        height: 200px;
+        transform-origin: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    img {
+        object-fit: cover;
+        object-position: center -80px;
+        transition: transform 0.8s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes increaseWidth {
+        from {
+            width: 0;
+        }
+        to {
+            width: 70%;
+        }
+    }
+</style>
