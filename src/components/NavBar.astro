@@ -1,0 +1,84 @@
+---
+import PresentationIcon from './icons/PresentationIcon.astro'
+import GreetingsIcon from './icons/GreetingsIcon.astro'
+import ProjectsIcon from './icons/ProjectsIcon.astro'
+import ContactIcon from './icons/ContactIcon.astro'
+---
+
+<nav>
+    <ul>
+        <li><a href="#presentation" aria-label="presentation"><PresentationIcon /></a></li>
+        <li><a href="#projects" aria-label="projects"><ProjectsIcon/></a></li>
+        <li><a href="#greetings" aria-label="greetings"><GreetingsIcon/></a></li>
+        <li><a href="#contact" aria-label="contact"><ContactIcon/></a></li>
+    </ul>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section')
+        const navLinks = document.querySelectorAll('nav a')
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        const svg = link.querySelector('svg')
+                        svg.setAttribute('stroke', '#EE964B')
+                        if (link.getAttribute('aria-label') === entry.target.id) {
+                          svg.setAttribute('stroke', '#DDFF00')
+                        }
+                    });
+                }
+            });
+        }, observerOptions)
+
+        sections.forEach(section => {
+            observer.observe(section)
+        });
+    });
+</script>
+
+<style>
+    nav {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #222222;
+        padding: 10px 5px;
+        border-radius: 20px;
+        margin-right: 10px;
+        width: 50px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin: 10px 0;
+    }
+
+    a {
+        color: white; 
+        transition: color 0.3s, transform 0.3s; 
+        text-decoration: none;
+    }
+
+    svg{
+        transition: stroke 0.3s;
+    }
+</style>
