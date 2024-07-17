@@ -1,0 +1,61 @@
+---
+import Linkedin from "./icons/Linkedin.astro";
+import Email from "./icons/Email.astro";
+---
+
+<section id="contact">
+    <h1>Contacto</h1>
+    <p>
+        Si tienes alguna pregunta, sugerencia o simplemente quieres charlar, no dudes en
+        contactarme a través de mis redes sociales o enviándome un correo electrónico. ¡Estaré
+        encantado de escucharte!
+    </p>
+    <div class="socials">
+        <a href="https://www.linkedin.com/in/jeremy-encalada-8480952a1/" target="_blank" rel="noopener">
+            <Linkedin width="40" stroke="#EE964B"/>
+            Linkedin
+        </a>
+        <a href="mailto:encaladajeremy@gmail.com">
+            <Email stroke="#F95738" />
+            encaladajeremy@gmail.com
+        </a>
+    </div>
+</section>
+
+<style>
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        color: #e9e3e3;
+        line-height: 1.5;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    .socials {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    a{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e9e3e3;
+        text-decoration: none;
+    }
+
+    a:hover {
+        transform: scale(1.1);
+    }
+</style>
